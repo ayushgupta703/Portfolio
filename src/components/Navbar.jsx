@@ -20,6 +20,10 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="logo">Ayush Gupta</div>
@@ -28,12 +32,14 @@ export default function Navbar() {
         {menuOpen ? <X size={24} /> : <Menu size={24} />}
       </div>
       
+      <div className={`nav-overlay ${menuOpen ? 'open' : ''}`} onClick={closeMenu}></div>
+      
       <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
-        <li><a href="#about" onClick={() => setMenuOpen(false)}>About</a></li>
-        <li><a href="#projects" onClick={() => setMenuOpen(false)}>Projects</a></li>
-        <li><a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a></li>
+        <li><a href="#about" onClick={closeMenu}>About</a></li>
+        <li><a href="#projects" onClick={closeMenu}>Projects</a></li>
+        <li><a href="#contact" onClick={closeMenu}>Contact</a></li>
         <li>
-          <a href="/Ayush Gupta Resume GLA.docx" download className="resume-link" onClick={() => setMenuOpen(false)}>
+          <a href="/Ayush Gupta Resume GLA.docx" download className="resume-link" onClick={closeMenu}>
             Resume
           </a>
         </li>
