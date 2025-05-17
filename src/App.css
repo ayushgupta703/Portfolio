@@ -935,12 +935,32 @@ section {
     padding: 2.5rem;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
+    margin: 10rem 0;
+}
+
+.contact-form-container h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.form-intro {
+    color: var(--gray-text);
+    margin-bottom: 2rem;
+    line-height: 1.6;
 }
 
 .contact-form {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    /* padding-top: 5rem; */
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
 }
 
 .form-group {
@@ -951,9 +971,12 @@ section {
 
 .form-group label {
     font-weight: 500;
+    color: var(--text-color);
 }
 
-.form-group input, .form-group textarea {
+.form-group input,
+.form-group textarea,
+.form-group select {
     padding: 0.8rem;
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
@@ -961,32 +984,76 @@ section {
     color: var(--text-color);
     font-family: var(--font-family);
     resize: vertical;
+    transition: all var(--transition-speed);
 }
 
-.form-group input:focus, .form-group textarea:focus {
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
     outline: none;
     border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--gray-text);
+    opacity: 0.7;
+}
+
+.form-group select {
+    cursor: pointer;
+    appearance: none;
+    background-color: var(--card-bg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236c757d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    background-size: 1rem;
+    padding-right: 2.5rem;
+    color: var(--text-color);
+}
+
+.form-group select option {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    padding: 0.5rem;
+}
+
+/* Dark mode specific styles */
+body.dark-mode .form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+body.dark-mode .form-group select option {
+    background-color: var(--dark-bg);
+    color: var(--light-text);
 }
 
 .submit-btn {
     background-color: var(--primary-color);
     color: white;
-    padding: 0.8rem 1.2rem;
+    padding: 1rem 1.5rem;
     border-radius: var(--border-radius);
     font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    transition: all var(--transition-speed);
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
 }
 
 .submit-btn:hover {
     background-color: var(--secondary-color);
+    transform: translateY(-2px);
 }
 
 .submit-btn:disabled {
     background-color: var(--gray-text);
     cursor: not-allowed;
+    transform: none;
 }
 
 .spinner-icon {
@@ -994,24 +1061,31 @@ section {
 }
 
 .form-status {
-    padding: 0.8rem;
+    padding: 1rem;
     border-radius: var(--border-radius);
     text-align: center;
+    font-weight: 500;
 }
 
 .form-status.success {
     background-color: rgba(76, 175, 80, 0.1);
     color: var(--success-color);
+    border: 1px solid rgba(76, 175, 80, 0.2);
 }
 
 .form-status.error {
     background-color: rgba(244, 67, 54, 0.1);
     color: var(--error-color);
+    border: 1px solid rgba(244, 67, 54, 0.2);
 }
 
-@media (max-width: 992px) {
-    .contact-container {
+@media (max-width: 768px) {
+    .form-row {
         grid-template-columns: 1fr;
+    }
+    
+    .contact-form-container {
+        padding: 1.5rem;
     }
 }
 
@@ -1267,4 +1341,53 @@ section {
 .loading-text {
     font-size: 14px;
     color: var(--gray-text);
+}
+
+/* Availability Status Styles */
+.availability-status {
+    background-color: rgba(67, 97, 238, 0.05);
+    padding: 1.2rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 2rem;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #4caf50;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.status-description {
+    color: var(--gray-text);
+    font-size: 0.95rem;
+    line-height: 1.5;
 }

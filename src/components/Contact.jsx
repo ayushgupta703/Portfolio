@@ -1,12 +1,15 @@
 import { useState, useRef, useEffect } from 'react';
 import { submitContactForm } from '../utils/formHandler';
-import { Send, Loader, Mail, MapPin, Github, Linkedin, Twitter, Clock } from 'lucide-react';
+import { Send, Loader, Mail, MapPin, Github, Linkedin, Twitter, Clock, Calendar, Target } from 'lucide-react';
+import { availabilityStatus } from '../utils/data';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: ''
+    message: '',
+    subject: '',
+    preferredContact: 'email'
   });
   const [status, setStatus] = useState({ type: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -49,7 +52,7 @@ export default function Contact() {
       
       if (result.success) {
         setStatus({ type: 'success', message: result.message });
-        setFormData({ name: '', email: '', message: '' });
+        setFormData({ name: '', email: '', message: '', subject: '', preferredContact: 'email' });
       } else {
         setStatus({ type: 'error', message: result.message });
       }
@@ -71,6 +74,14 @@ export default function Contact() {
         <div className="contact-info">
           <h3>Let's Build Something Amazing Together</h3>
           <p>I'm currently available for freelance work, full-time positions, and collaborative projects. Whether you have a question, proposal, or just want to say hello, I'd love to hear from you!</p>
+          
+          <div className="availability-status">
+            <div className="status-badge">
+              <span className="status-dot"></span>
+              {availabilityStatus.status}
+            </div>
+            <p className="status-description">{availabilityStatus.description}</p>
+          </div>
           
           <div className="contact-methods">
             <div className="contact-method">
@@ -99,7 +110,17 @@ export default function Contact() {
               </div>
               <div className="contact-details">
                 <h4>Response Time</h4>
-                <p>Usually within 24-48 hours</p>
+                <p>{availabilityStatus.responseTime}</p>
+              </div>
+            </div>
+
+            <div className="contact-method">
+              <div className="contact-icon">
+                <Target size={20} />
+              </div>
+              <div className="contact-details">
+                <h4>Current Focus</h4>
+                <p>{availabilityStatus.currentFocus}</p>
               </div>
             </div>
           </div>
@@ -139,31 +160,53 @@ export default function Contact() {
         </div>
         
         <div className="contact-form-container">
+          <h3>Send Me a Message</h3>
+          <p className="form-intro">Have a project in mind or want to discuss opportunities? Fill out the form below and I'll get back to you as soon as possible.</p>
+          
           <form onSubmit={handleSubmit} className="contact-form">
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="name">Your Name</label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  disabled={isSubmitting}
+                  placeholder="John Doe"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">Your Email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  disabled={isSubmitting}
+                  placeholder="john@example.com"
+                />
+              </div>
+            </div>
+
             <div className="form-group">
-              <label htmlFor="name">Your Name</label>
+              <label htmlFor="subject">Subject</label>
               <input
-                id="name"
-                name="name"
+                id="subject"
+                name="subject"
                 type="text"
-                value={formData.name}
+                value={formData.subject}
                 onChange={handleChange}
                 required
                 disabled={isSubmitting}
+                placeholder="What's this about?"
               />
             </div>
-            <div className="form-group">
-              <label htmlFor="email">Your Email</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                disabled={isSubmitting}
-              />
-            </div>
+
             <div className="form-group">
               <label htmlFor="message">Your Message</label>
               <textarea
@@ -174,7 +217,23 @@ export default function Contact() {
                 required
                 disabled={isSubmitting}
                 rows="5"
+                placeholder="Tell me about your project or opportunity..."
               />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="preferredContact">Preferred Contact Method</label>
+              <select
+                id="preferredContact"
+                name="preferredContact"
+                value={formData.preferredContact}
+                onChange={handleChange}
+                disabled={isSubmitting}
+              >
+                <option value="email">Email</option>
+                <option value="linkedin">LinkedIn</option>
+                <option value="github">GitHub</option>
+              </select>
             </div>
             
             {status.message && (

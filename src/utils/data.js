@@ -47,4 +47,13 @@ export const skills = [
     { name: "Express" },
     { name: "RESTful APIs" },
     { name: "Responsive Design" }
-]; 
+];
+
+export const availabilityStatus = {
+    status: "Available for Opportunities", // or "Currently Employed", "Open to Freelance", etc.
+    description: "I'm currently available for full-time positions, freelance projects, and collaborations.",
+    preferredContact: "Email or LinkedIn",
+    responseTime: "24-48 hours",
+    // bestTimeToReach: "Weekdays, 9 AM - 6 PM IST",
+    currentFocus: "Full Stack Development & AI Integration"
+}; 
