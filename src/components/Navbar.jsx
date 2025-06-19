@@ -39,7 +39,7 @@ export default function Navbar() {
         <li><a href="#projects" onClick={closeMenu}>Projects</a></li>
         <li><a href="#contact" onClick={closeMenu}>Contact</a></li>
         <li>
-          <a href="/Ayush Gupta Resume GLA.docx" download className="resume-link" onClick={closeMenu}>
+          <a href="/Ayush Gupta Resume.docx" download className="resume-link" onClick={closeMenu}>
             Resume
           </a>
         </li>
