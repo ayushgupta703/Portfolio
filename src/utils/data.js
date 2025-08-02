@@ -9,12 +9,12 @@ export const projectsData = [
         githubLink: "https://github.com/ayushgupta703/GourmetFusion.git"
     },
     { 
-        id: 2, 
-        title: "🤖 GLA Chatbot Using LLM", 
-        description: "AI-powered chatbot built with LLM to assist students and faculty.", 
-        tags: ["Python", "Gemini API (LLM)", "BeautifulSoup", "Command-line Interface"],
-        image: "./project-images/gla-chatbot.jpg",
-        githubLink: "https://github.com/vansh69420/ChatBot-Using-LLM.git"
+        id: 2,
+        title: "NotOnMyWatch - Community Safety Mapping",
+        description: "Full-stack web application for anonymous incident reporting and real-time safety mapping to empower communities.",
+        tags: ["Frontend: React, CSS3", "Database: MongoDB Compass", "Backend: NodeJS, ExpressJS, MongoDB", "API: RESTful Endpoints, CORS Support"],
+        image: "./project-images/notonmywatch.jpg",
+        githubLink: "https://github.com/ayushgupta703/NotOnMyWatch---Community-Safety-Mapping-Application.git"
     },
     { 
         id: 3, 
@@ -25,14 +25,13 @@ export const projectsData = [
         githubLink: "https://github.com/ayushgupta703/ChatBot.git"
     },
     { 
-        id: 4, 
-        title: "Real-Time Weather Dashboard", 
-        description: "Full-stack weather monitoring application with live data visualization and dynamic UI.", 
-        tags: ["Frontend: React, CSS3, Axios", "Backend: Node.js, Express", "API Integration: OpenWeatherMap", "UI Features: Dark Mode, Responsive Design", "State Management: React Hooks", "Error Handling & Loading States"],
-        image: "./project-images/weather-dashboard.jpg",
-        githubLink: "https://github.com/ayushgupta703/weather-dashboard"
+    id: 4, 
+    title: "🤖 GLA Chatbot Using LLM", 
+    description: "AI-powered chatbot built with LLM to assist students and faculty.", 
+    tags: ["Python", "Gemini API (LLM)", "BeautifulSoup", "Command-line Interface"],
+        image: "./project-images/gla-chatbot.jpg",
+        githubLink: "https://github.com/vansh69420/ChatBot-Using-LLM.git"
     }
-    
 ];
 
 export const skills = [
