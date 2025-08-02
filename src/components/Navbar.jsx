@@ -39,7 +39,7 @@ export default function Navbar() {
         <li><a href="#projects" onClick={closeMenu}>Projects</a></li>
         <li><a href="#contact" onClick={closeMenu}>Contact</a></li>
         <li>
-          <a href="https://drive.google.com/file/d/1Oio3pL9zAL3F2OAiAW-trIh6wAskxlnE/view?usp=sharing" download className="resume-link" onClick={closeMenu}>
+          <a href="https://drive.google.com/uc?export=download&id=1Oio3pL9zAL3F2OAiAW-trIh6wAskxlnE" download className="resume-link" onClick={closeMenu}>
             Resume
           </a>
         </li>
